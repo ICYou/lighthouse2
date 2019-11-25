@@ -14,7 +14,7 @@
     <ProjectGuid>{FF0D391E-1A93-48B0-A700-650F6BAF2597}</ProjectGuid>
     <RootNamespace>CUDATemplate2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
-    <ProjectName>rendercore_primeref</ProjectName>
+    <ProjectName>RenderCore_PrimeRef</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -43,11 +43,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\coredlls\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)/run</OutDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CudaToolkitIncludeDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\coredlls\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)/run</OutDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CudaToolkitIncludeDir)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -55,7 +55,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>COREDLL_EXPORTS;WIN32;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../freeimage/inc;../zlib;../glfw/include;../glad/include;../Optix/include;../CUDA;../CUDA/shared_kernel_code;../half2.1.0;../tinyobjloader;../OptiX7/include;../platform;.;../RenderSystem;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../freeimage/include;../zlib;../glfw/include;../glad/include;../Optix/include;../CUDA;../CUDA/shared_kernel_code;../half2.1.0;../tinyobjloader;../OptiX7/include;../platform;.;../RenderSystem;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -63,8 +63,8 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>cudart_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CudaToolkitLibDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cudart_static.lib;optix_prime.6.5.0.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CudaToolkitLibDir);../OptiX/lib64</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>MSVCRT</IgnoreSpecificDefaultLibraries>
     </Link>
     <CudaCompile>
@@ -84,7 +84,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>COREDLL_EXPORTS;WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../freeimage/inc;../zlib;../glfw/include;../glad/include;../Optix/include;../CUDA;../CUDA/shared_kernel_code;../half2.1.0;../tinyobjloader;../OptiX7/include;../platform;.;../RenderSystem;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../freeimage/include;../zlib;../glfw/include;../glad/include;../Optix/include;../CUDA;../CUDA/shared_kernel_code;../half2.1.0;../tinyobjloader;../OptiX7/include;../platform;.;../RenderSystem;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -94,8 +94,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>cudart_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CudaToolkitLibDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cudart_static.lib;optix_prime.6.5.0.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CudaToolkitLibDir);../OptiX/lib64</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
@@ -161,6 +161,11 @@
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</GPUDebugInfo>
       <MaxRegCount Condition="'$(Configuration)|$(Platform)'=='Release|x64'">0</MaxRegCount>
     </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\platform\platform.vcxproj">
+      <Project>{7940afae-a1f7-440c-823c-239f2c3bb023}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

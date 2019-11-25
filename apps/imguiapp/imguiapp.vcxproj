@@ -42,12 +42,12 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>.\</OutDir>
+    <OutDir>$(SolutionDir)/run</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>.\</OutDir>
+    <OutDir>$(SolutionDir)/run</OutDir>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -55,7 +55,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);../../lib/RenderCore;../../lib/imgui;../../lib/zlib;../../lib/glfw/include;../../lib/glad/include;../../lib/half2.1.0;../../lib/RenderSystem;../../lib/platform;../../lib/AntTweakBar/include;../../lib/freeimage/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);../../lib/RenderCore;../../lib/imgui;../../lib/zlib;../../lib/glfw/include;../../lib/glad/include;../../lib/half2.1.0;../../lib/RenderSystem;../../lib/platform;../../lib/AntTweakBar/include;../../lib/FreeImage/include</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -63,7 +63,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>rendersystem.lib;platform.lib;libz-static.lib;kernel32.lib;user32.lib;gdi32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rendersystem.lib;platform.lib;zlibstatic.lib;kernel32.lib;user32.lib;gdi32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../lib/AntTweakBar/lib;../../lib/zlib;../../lib/RenderSystem/lib/debug;../../lib/platform/lib/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>MSVCRT</IgnoreSpecificDefaultLibraries>
       <AdditionalOptions>/debug:fastlink %(AdditionalOptions)</AdditionalOptions>
@@ -76,7 +76,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);../../lib/RenderCore;../../lib/imgui;../../lib/zlib;../../lib/glfw/include;../../lib/glad/include;../../lib/half2.1.0;../../lib/RenderSystem;../../lib/platform;../../lib/AntTweakBar/include;../../lib/freeimage/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);../../lib/RenderCore;../../lib/imgui;../../lib/zlib;../../lib/glfw/include;../../lib/glad/include;../../lib/half2.1.0;../../lib/RenderSystem;../../lib/platform;../../lib/AntTweakBar/include;../../lib/FreeImage/include</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -88,7 +88,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>rendersystem.lib;platform.lib;libz-static.lib;kernel32.lib;user32.lib;gdi32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rendersystem.lib;platform.lib;zlibstatic.lib;kernel32.lib;user32.lib;gdi32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../lib/zlib;../../lib/RenderSystem/lib/release;../../lib/platform/lib/release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>

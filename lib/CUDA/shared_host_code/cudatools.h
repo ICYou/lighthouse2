@@ -150,15 +150,13 @@ public:
 		CHK_NVRTC( nvrtcCreateProgram( &prog, cuSource, 0, 0, NULL, NULL ) );
 		// gather NVRTC options
 		vector<const char*> options;
-	#if 0
-		// @Marijn: this doesn't work. Optix is used in several versions, distributed with LH2.
 		// TODO: Throw FatalError if no path is defined for the requested OptiX version!
 		if (optixVer > 6)
 		{
 		#ifdef OPTIX_INCLUDE_PATH
 			options.push_back( "-I" OPTIX_INCLUDE_PATH );
 		#else
-			FATALERROR( "No include path defined for OptiX %d!", optixVer );
+			options.push_back("-Ilib/OptiX7/include");
 		#endif
 		}
 		else
@@ -166,19 +164,16 @@ public:
 		#ifdef OPTIX_6_INCLUDE_PATH
 			options.push_back( "-I" OPTIX_6_INCLUDE_PATH );
 		#else
-			FATALERROR( "No include path defined for OptiX %d!", optixVer );
+			options.push_back("-Ilib/OptiX/include");
 		#endif
 		}
-	#else
-		if (optixVer > 6) options.push_back( "-I../../lib/Optix7/include/" ); else options.push_back( "-I../../lib/Optix/include/" );
-	#endif
 		string optionString = "-I";
 		optionString += string( sourceDir );
 		options.push_back( optionString.c_str() );
 	#ifdef _MSC_VER
 		options.push_back( "-IC:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1/include/" );
 	#endif
-		options.push_back( "-I../../lib/CUDA/" );
+		options.push_back( "-Ilib/CUDA/" );
 		// collect NVRTC options
 		char versionString[64];
 		snprintf( versionString, sizeof( versionString ), "compute_%i", cc >= 70 ? 70 : 50 );
