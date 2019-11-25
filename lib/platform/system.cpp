@@ -139,9 +139,9 @@ bool FileIsNewer( const char* file1, const char* file2 )
 #ifdef _MSC_VER
 	return f1.st_mtime >= f2.st_mtime;
 #else
-	if (f1.st_mtim.tv_sec >= f2.st_mtim.tv_sec)
+	if (f1.st_mtimespec.tv_sec >= f2.st_mtimespec.tv_sec)
 		return true;
-	return f1.st_mtim.tv_nsec >= f2.st_mtim.tv_nsec;
+	return f1.st_mtimespec.tv_nsec >= f2.st_mtimespec.tv_nsec;
 #endif
 }
 
