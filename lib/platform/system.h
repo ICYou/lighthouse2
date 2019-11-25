@@ -43,6 +43,10 @@ using namespace half_float;
 #include "common_classes.h"
 #include <GLFW/glfw3.h>		// needed for Timer class
 
+#include <cstdio>
+#include <cstdlib>
+
+
 // https://devblogs.microsoft.com/cppblog/msvc-preprocessor-progress-towards-conformance/
 // MSVC _Should_ support this extended functionality for the token-paste operator:
 #define FATALERROR( fmt, ... ) FatalError( "Error on line %d of %s: " fmt "\n", __LINE__, __FILE__, ##__VA_ARGS__ )
@@ -68,7 +72,7 @@ using namespace half_float;
 #define FREE64( x ) _aligned_free( x )
 #else
 #define ALIGN( x ) __attribute__( ( aligned( x ) ) )
-#define MALLOC64( x ) ((x)==0?0:aligned_alloc(64, (x)))
+#define MALLOC64( x ) ((x)==0?0:malloc((x)))
 #define FREE64( x ) free( x )
 #endif
 
